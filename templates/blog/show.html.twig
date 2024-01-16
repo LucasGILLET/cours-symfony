@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h1>{{article.title}}</h1>
+        <h2>{{article.description}}</h2>
+        <p>{{article.content}}</p>
+
+        {% if article.premium %}
+            Abonnez-vous !
+        {% endif %}
+
+        <div style="display='flex'">
+            <a class="button" href="{{ path('app_blog_edit', {'id' : article.id}) }}">Modifier</a>
+            <a class="button-red" href="{{ path('app_blog_delete', {'id' : article.id}) }}">Supprimer</a>
+        </div>
+    </div>
+{% endblock %}

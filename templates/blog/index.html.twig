@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<h1>Blog</h1>
+<a class="btn btn-primary" href="{{ path('app_blog_add') }}">Ajouter un nouvel article</a>
+{% for article in articles %}
+
+    <div class="card">
+    {% if article.image %}
+        <img class="image" src="{{article.image.src}}" alt="{{article.image.alt}}"></img>
+    {% else %}
+        <img class="image" src="{{ asset('/images/default-picture.jpg')}}" alt="Image par défaut"></img>
+    {% endif %}
+        <h2>
+            {% if article.premium == true %}
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
+            {% endif %}
+            {{article.title}}
+        </h2>
+        <p>{{article.description}}</p>
+        <div style="display='flex'">
+            <a class="button" href="{{ path('app_blog_show', {'id' : article.id}) }}">Lire</a>
+            <a class="button" href="{{ path('app_blog_edit', {'id' : article.id}) }}">Modifier</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

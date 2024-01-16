@@ -1,5 +1,10 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        separator: "|"
+        website_title: "superSite"
+    form_themes:
+        - 'bootstrap_5_layout.html.twig'
 
 when@test:
     twig:
